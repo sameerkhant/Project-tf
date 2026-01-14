@@ -18,14 +18,7 @@ module "ec2" {
   name         = "my-ec2test"
 }
 
-  module "alb" {
-  source     = "./modules/alb"
-  alb_name   = "myapp-alb"
-  vpc_id     = module.vpc.vpc_id
-  subnet_ids = module.vpc.public_subnet_ids   
-  sg_ids     = [module.mysql_sg.sg_id]       
-  env        = "dev"
-}
+
 
 module "s3" {
   source      = "./modules/s3"
@@ -35,26 +28,6 @@ module "s3" {
 
 module "iam_user" {
   source      = "./modules/iam_user"
-  users       = ["alice", "bob", "charlie"]
+  users       = ["jhon", "paul"]
 }
 
-/*
-module "mysql_sg" {
-  source = "./modules/mysql_sg"
-  sg_name   = "mysql_sg"
-  vpc_id   = module.vpc.vpc_id
-  cidr_ips = var.allowed_cidr
-}
-
-module "rds_mysql" {
-  source = "./modules/rds_mysql"
-
-  db_name           = var.db_name
-  db_username       = var.db_username
-  db_password       = var.db_password
-  instance_class    = var.db_instance_class
-  allocated_storage = var.db_allocated_storage
-  sg_id             = module.mysql_sg.sg_id
-}
-
-*/
