@@ -35,4 +35,4 @@ jobs:
 
       # Step 5: Terraform Plan
       - name: Terraform Plan
-        run: terraform plan -out=tfplan -var='users=[john,paul]'
+        run: terraform plan -out=tfplan
