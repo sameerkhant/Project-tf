@@ -5,6 +5,10 @@ output "public_subnet_ids" {
   value = module.vpc.public_subnet_ids
 }
 
+output "vpc_id" {
+  value = aws_vpc.main.id
+}
+
 output "instance_ids" {
   value = module.ec2.instance_ids
 }

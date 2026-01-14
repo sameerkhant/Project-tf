@@ -4,7 +4,9 @@ variable "users" {
 }
 
 
-variable "vpc_id" {}
+variable "vpc_id" {
+  vpc_id = aws_vpc.main.vpc_id
+}
 
 variable "allowed_cidr" {
   default = ["0.0.0.0/0"] # ⚠ restrict in prod
