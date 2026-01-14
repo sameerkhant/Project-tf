@@ -1,0 +1,16 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars      # sensitive variables like passwords
+crash.log
+
+# Terraform provider binaries (sometimes in .terraform/providers/)
+.terraform/providers/
+
+# Optional editor / OS files
+*.log
+*.swp
+.DS_Store
+.idea/
+.vscode/
