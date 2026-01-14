@@ -31,10 +31,10 @@ jobs:
 
       # Step 4: Terraform Init
       - name: Terraform Init
-        run: terraform init
-        working-directory: Terraform-
+        run: terraform init 
+       
 
       # Step 5: Terraform Plan
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
-        working-directory: Terraform-
+        run: terraform plan -input=false -out=tfplan
+      
