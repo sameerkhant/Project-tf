@@ -38,3 +38,10 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -input=false -out=tfplan
       
+name: Send approval email
+        env:
+          APPROVER_EMAIL: ${{ secrets.APPROVER_EMAIL }}
+        run: |
+          echo "Terraform plan completed.
+          Please log in to GitHub and approve deployment to production." \
+          | mail -s "Terraform Approval Required" $APPROVER_EMAIL
