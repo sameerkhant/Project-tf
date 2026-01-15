@@ -9,6 +9,7 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    environment: production  # This triggers the manual approval in GitHub
 
     steps:
       # Step 1: Checkout the code
@@ -38,10 +39,15 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -input=false -out=tfplan
       
-name: Send approval email
-        env:
-          APPROVER_EMAIL: ${{ secrets.APPROVER_EMAIL }}
-        run: |
-          echo "Terraform plan completed.
-          Please log in to GitHub and approve deployment to production." \
-          | mail -s "Terraform Approval Required" $APPROVER_EMAIL
+      - name: Upload Plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan
+          path: tfplan
+
+       # Step 6: Terraform Apply with manual approval
+      - name: Terraform Apply
+        run: terraform apply
+    
+        
+      
